@@ -49,4 +49,10 @@ class LoginController extends Controller
                 'data'=>$user
         ], $this-> successStatus); 
     }
+
+    public function info() 
+    { 
+        $user = Auth::user(); 
+        return response()->json(['success' => $user], $this-> successStatus); 
+    } 
 }
