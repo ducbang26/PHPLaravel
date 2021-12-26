@@ -23,7 +23,7 @@ class UserController extends Controller
             if(Auth::attempt($login)){ 
                 $user = Auth::user(); 
                 $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-                return response()->json(['success' => $success], $this-> successStatus); 
+                return response()->json(['data' => $success], $this-> successStatus); 
             } 
             else{ 
                 return response()->json(['error'=>'Unauthorised'], 401); 
@@ -58,7 +58,7 @@ class UserController extends Controller
     public function info() 
     { 
         $user = Auth::user(); 
-        return response()->json(['success' => $user], $this-> successStatus); 
+        return response()->json(['data' => $user], $this-> successStatus); 
     } 
 
     public function updateInfo(Request $request) 
@@ -93,7 +93,7 @@ class UserController extends Controller
                 'profileImg' => $request->profileImg
             ]);
 
-            return response()->json(['success'=>'Cap nhat thanh cong!'], $this-> successStatus);
+            return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
 
         } catch (\Exception $e) {
             return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
