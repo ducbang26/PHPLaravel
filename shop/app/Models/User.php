@@ -23,6 +23,9 @@ class User extends Authenticatable
         'password',
         'profileImg',
     ];
+    public $appends = [
+        'profile_image_url',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +45,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getProfileImageUrlAttribute(){
+        if ($this->profileImg) {
+            return asset('/uploads/profile_images'.$this->profileImg);
+        }else{
+            return 'https://ui-avatars.com/api/?background=random&name='.urlencode($this->name);
+        }
+    }
 }

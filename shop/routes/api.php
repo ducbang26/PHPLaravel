@@ -19,9 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', 'App\Http\Controllers\Api\LoginController@login');
-Route::post('register', 'App\Http\Controllers\Api\LoginController@register');
+Route::post('login', 'App\Http\Controllers\Api\UserController@login');
+Route::post('register', 'App\Http\Controllers\Api\UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('info', 'App\Http\Controllers\Api\LoginController@info');
-    Route::post('updateInfo', 'App\Http\Controllers\Api\LoginController@updateInfo');
+    Route::post('info', 'App\Http\Controllers\Api\UserController@info');
+    Route::post('info/updateInfo', 'App\Http\Controllers\Api\UserController@updateInfo');
 });

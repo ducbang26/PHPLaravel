@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Validator;
+use File;
 
 class LoginController extends Controller
 {
@@ -59,34 +60,41 @@ class LoginController extends Controller
         $user = Auth::user(); 
         return response()->json(['success' => $user], $this-> successStatus); 
     } 
+
     public function updateInfo(Request $request) 
     {
         try {
             $validator = Validator::make($request->all(), [ 
             'name' => 'required', 
-            'email' => 'required|email'.$request->user()->id, 
-            'profileImg' => 'nullable|image', 
+            'profileImg' => 'nullable|image|mimes:jpg,png,jpeg',
             ]);
+
             if ($validator->fails()) {
                 $error = $validator->errors()->all()[0];
                 return response()->json(['status'=>'false','message'=>$error,'data'=>[]], 422);            
-            }else {
-                $user = User::find($request->user()->id);
-                $user->name = $request->name;
-                $user->email = $request->email;
+            }
 
-                if ($request->profileImg && $request->profileImg->isvalid()) {
-                    $filename = time().'.'.$request->profileImg->extenction();
-                    $request->profileImg->move(public_path('images'),$filename);
-                    $path = 'public/images/$filemane';
-                    $user->profileImg = $path;
+            $user = $request->user();
+            if($request->hasFile('profileImg')){
+                if ($user->profileImg) {
+                    $old_path = public_path().'/uploads/profile_images'.$user->profileImg;
+                    if(File::exists($old_path)){
+                        File::delete($old_path);
+                    }
                 }
-                $user->update();
-                return response()->json([
-                    'success'=>'Profile da duoc cap nhat',
-                    'data'=>$user
-                ], $this-> successStatus);
-            } 
+                $image_name = 'profile-image-'.time().'.'.$request->profileImg->extension();
+                $request->profileImg->move(public_path('/uploads/profile_images'),$image_name);
+            }else{
+                $image_name = $user->profileImg;
+            }
+
+            $user->update([
+                'name' => $request->name,
+                'profileImg' => $request->profileImg
+            ]);
+
+            return response()->json(['success'=>'Cap nhat thanh cong!'], $this-> successStatus);
+
         } catch (\Exception $e) {
             return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
         }
