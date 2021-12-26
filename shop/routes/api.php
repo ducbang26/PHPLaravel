@@ -23,4 +23,5 @@ Route::post('login', 'App\Http\Controllers\Api\LoginController@login');
 Route::post('register', 'App\Http\Controllers\Api\LoginController@register');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('info', 'App\Http\Controllers\Api\LoginController@info');
+    Route::post('updateInfo', 'App\Http\Controllers\Api\LoginController@updateInfo');
 });

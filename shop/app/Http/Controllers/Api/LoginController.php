@@ -59,4 +59,36 @@ class LoginController extends Controller
         $user = Auth::user(); 
         return response()->json(['success' => $user], $this-> successStatus); 
     } 
+    public function updateInfo(Request $request) 
+    {
+        try {
+            $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email|unique:users,id,'.$request->user()->id, 
+            'profileImg' => 'nullable|image', 
+            ]);
+            if ($validator->fails()) {
+                $error = $validator->errors()->all()[0];
+                return response()->json(['status'=>'false','message'=>$error,'data'=>[]], 422);            
+            }else {
+                $user = User::find($request->user()->id);
+                $user->name = $request->name;
+                $user->email = $request->email;
+
+                if ($request->profileImg && $request->profileImg->isvalid()) {
+                    $filename = time().'.'.$request->profileImg->extenction();
+                    $request->profileImg->move(public_path('images'),$filename);
+                    $path = 'public/images/$filemane';
+                    $user->profileImg = $path;
+                }
+                $user->update();
+                return response()->json([
+                    'success'=>'Profile da duoc cap nhat',
+                    'data'=>$user
+                ], $this-> successStatus);
+            } 
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
+        }
+    }
 }
