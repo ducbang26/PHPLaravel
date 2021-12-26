@@ -13,19 +13,23 @@ class LoginController extends Controller
     public $successStatus = 200;
     public function login(Request $request)
     {
-         $login = $request->validate([
-             'email' => 'required|string',
-             'password' => 'required|string',
-         ]);
+        try {
+            $login = $request->validate([
+                'email' => 'required|string',
+                'password' => 'required|string',
+            ]);
          
-        if(Auth::attempt($login)){ 
-            $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-            return response()->json(['success' => $success], $this-> successStatus); 
-        } 
-        else{ 
-            return response()->json(['error'=>'Unauthorised'], 401); 
-        } 
+            if(Auth::attempt($login)){ 
+                $user = Auth::user(); 
+                $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+                return response()->json(['success' => $success], $this-> successStatus); 
+            } 
+            else{ 
+                return response()->json(['error'=>'Unauthorised'], 401); 
+            } 
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
+        }
     }
 
     public function register(Request $request) 
