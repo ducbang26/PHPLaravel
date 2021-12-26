@@ -9,7 +9,7 @@ use App\Models\User;
 use Validator;
 use File;
 
-class LoginController extends Controller
+class UserController extends Controller
 {
     public $successStatus = 200;
     public function login(Request $request)
