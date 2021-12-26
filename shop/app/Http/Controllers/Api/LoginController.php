@@ -64,7 +64,7 @@ class LoginController extends Controller
         try {
             $validator = Validator::make($request->all(), [ 
             'name' => 'required', 
-            'email' => 'required|email|unique:users,id,'.$request->user()->id, 
+            'email' => 'required|email'.$request->user()->id, 
             'profileImg' => 'nullable|image', 
             ]);
             if ($validator->fails()) {
