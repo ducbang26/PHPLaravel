@@ -84,6 +84,7 @@ class UserController extends Controller
                 }
                 $image_name = 'profile-image-'.time().'.'.$request->profileImg->extension();
                 $request->profileImg->move(public_path().'/uploads/profile_images',$image_name);
+                dd('$image_name');
             }else{
                 $image_name = $user->profileImg;
             }
