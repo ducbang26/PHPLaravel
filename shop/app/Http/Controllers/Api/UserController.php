@@ -76,22 +76,19 @@ class UserController extends Controller
 
             $user = $request->user();
             if($request->hasFile('profileImg')){
-                if ($user->profileImg) {
-                    $old_path = public_path().'/uploads/profile_images'.$user->profileImg;
-                    if(File::exists($old_path)){
-                        File::delete($old_path);
-                    }
-                }
-                $image_name = 'profile-image-'.time().'.'.$request->profileImg->extension();
-                $request->profileImg->move(public_path().'/uploads/profile_images',$image_name);
-                dd('$image_name');
-            }else{
-                $image_name = $user->profileImg;
+                $image= $request->file('profileImg');
+                $name = time() . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('/uploads/profile_images');
+                $image->move($destinationPath,$name);
+                $image_uploaded = $name;
+            }
+            else{
+                $image_uploaded = $request->profileImg;
             }
 
             $user->update([
                 'name' => $request->name,
-                'profileImg' => $request->profileImg
+                'profileImg' => $image_uploaded,
             ]);
 
             return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
