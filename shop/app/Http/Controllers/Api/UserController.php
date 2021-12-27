@@ -77,7 +77,7 @@ class UserController extends Controller
             $user = $request->user();
             if($request->hasFile('profileImg')){
                 $image= $request->file('profileImg');
-                $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = '/'.time() . '.' . $image->getClientOriginalExtension();
                 $destinationPath = public_path('/uploads/profile_images/');
                 $image->move($destinationPath,$name);
                 $image_uploaded = $name;
