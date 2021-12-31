@@ -6,8 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+use App\Models\PasswordReset;
+use App\Notifications\ResetPasswordRequest;
 use Validator;
 use File;
+use Hash;
 
 class UserController extends Controller
 {
@@ -93,6 +98,39 @@ class UserController extends Controller
 
             return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
 
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'status' => 'Da dang xuat!',
+        ]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        try{
+            $validator = Validator::make($request->all(), [ 
+                'old_password' => 'required',
+                'password' => 'required', 
+                'confirm_password' => 'required| same:password',
+            ]);
+    
+            if ($validator->fails()) {
+                $error = $validator->errors()->all()[0];
+                return response()->json(['status'=>'false','message'=>$error,'data'=>[]], 422);            
+            }
+            $user = $request->user();
+            if (Hash::check($request->old_password, $user->password)) {
+                $user->update([
+                    'password' =>bcrypt($request->password),
+                ]);
+                return response()->json(['status'=>'Doi mat khau thanh cong!'], $this-> successStatus);
+            }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
         }
