@@ -53,4 +53,12 @@ class User extends Authenticatable
             return 'https://ui-avatars.com/api/?background=random&name='.urlencode($this->name);
         }
     }
+
+    public function sendPasswordResetNotification($token)
+    {
+
+        $url = 'https://dulichvgo.herokuapp.com/reset-password?token=' . $token;
+
+        $this->notify(new ResetPasswordNotification($url));
+    }
 }

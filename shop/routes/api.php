@@ -25,3 +25,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('info/change-Password', 'App\Http\Controllers\Api\UserController@changePassword');
     Route::delete('logout', 'App\Http\Controllers\Api\UserController@logout');
 });
+
+Route::post('forgot-password', 'App\Http\Controllers\Api\NewPasswordController@forgotPassword');
