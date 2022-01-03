@@ -26,4 +26,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::delete('logout', 'App\Http\Controllers\Api\UserController@logout');
 });
 
-Route::post('forgot-password', 'App\Http\Controllers\Api\NewPasswordController@forgotPassword');
+Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
+Route::put('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');
