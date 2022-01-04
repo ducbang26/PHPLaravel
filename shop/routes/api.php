@@ -22,6 +22,7 @@ Route::post('register', 'App\Http\Controllers\Api\UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('info', 'App\Http\Controllers\Api\UserController@info');
     Route::post('info/updateInfo', 'App\Http\Controllers\Api\UserController@updateInfo');
+    Route::post('info/updateImage', 'App\Http\Controllers\Api\UserController@updateImage');
     Route::post('info/change-Password', 'App\Http\Controllers\Api\UserController@changePassword');
     Route::delete('logout', 'App\Http\Controllers\Api\UserController@logout');
 });

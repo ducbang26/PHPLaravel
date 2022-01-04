@@ -44,7 +44,7 @@ class NewPasswordController extends Controller
         $passwordReset->delete();
 
         return response()->json([
-            'success' => $updatePasswordUser,
+            'message' => 'doi mat khau thanh cong',
         ]);
     }
     

@@ -66,12 +66,11 @@ class UserController extends Controller
         return response()->json(['data' => $user], $this-> successStatus); 
     } 
 
-    public function updateInfo(Request $request) 
+    public function updateImage(Request $request) 
     {
         try {
             $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'profileImg' => 'nullable|image|mimes:jpg,png,jpeg',
+            'profileImg' => 'nullable|image|mimes:jpg,png,jpeg'
             ]);
 
             if ($validator->fails()) {
@@ -92,8 +91,33 @@ class UserController extends Controller
             }
 
             $user->update([
-                'name' => $request->name,
                 'profileImg' => $image_uploaded,
+            ]);
+
+            return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
+
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
+        }
+    }
+
+    public function updateInfo(Request $request) 
+    {
+        try {
+            $validator = Validator::make($request->all(), [ 
+            'name' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                $error = $validator->errors()->all()[0];
+                return response()->json(['status'=>'false','message'=>$error,'data'=>[]], 422);            
+            }
+
+            $user = $request->user();
+            
+
+            $user->update([
+                'name' => $request->name
             ]);
 
             return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
