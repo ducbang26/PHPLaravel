@@ -28,4 +28,4 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
-Route::put('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');
+Route::post('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');

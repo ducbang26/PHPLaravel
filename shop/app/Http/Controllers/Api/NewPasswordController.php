@@ -15,15 +15,15 @@ class NewPasswordController extends Controller
      public function sendMail(Request $request)
     {
         $user = User::where('email', $request->email)->firstOrFail();
-        $passwordReset = PasswordReset::updateOrCreate([
+        $passwordReset = PasswordReset::insert([
             'email' => $user->email,
-        ], [
             'token' => Str::random(60),
+            'user_id' => $user->id,
         ]);
+        $sendMail = PasswordReset::where('user_id', $user->id)->firstOrFail();
         if ($passwordReset) {
-            $user->notify(new ResetPasswordNotification($passwordReset->token));
+            $user->notify(new ResetPasswordNotification($sendMail->token));
         }
-  
         return response()->json([
         'message' => 'We have e-mailed your password reset link!'
         ]);
@@ -40,8 +40,8 @@ class NewPasswordController extends Controller
             ], 422);
         }
         $user = User::where('email', $passwordReset->email)->firstOrFail();
-        $updatePasswordUser = $user->update($request->only('password'));
-        $passwordReset->delete();
+        $data = User::find($user->id);
+        $data->password = bcrypt($request->password);
 
         return response()->json([
             'message' => 'doi mat khau thanh cong',
