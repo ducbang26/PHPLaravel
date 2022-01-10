@@ -16,6 +16,18 @@ class CreateForeignkey extends Migration
         Schema::table('password_resets', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::table('place_images', function (Blueprint $table) {
+            $table->foreign('place_id')->references('id')->on('places');
+        });
+
+        Schema::table('bookmarks', function (Blueprint $table) {
+            $table->foreign('place_id')->references('id')->on('places');
+        });
+
+        Schema::table('bookmarks', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**

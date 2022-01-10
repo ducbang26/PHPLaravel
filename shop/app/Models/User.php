@@ -58,7 +58,7 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
 
-        $url = 'https://dulichvgo.herokuapp.com/reset-password?token=' . $token;
+        $url = 'https://dulichvgo.herokuapp.com/api/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }

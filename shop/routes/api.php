@@ -29,3 +29,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
 Route::post('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');
+Route::get('places', 'App\Http\Controllers\Api\PlaceController@getAllPlace');
+Route::get('popularPlaces', 'App\Http\Controllers\Api\PlaceController@getPopularPlace');
+Route::get('places/{id}', 'App\Http\Controllers\Api\PlaceController@placeDetail');
+
