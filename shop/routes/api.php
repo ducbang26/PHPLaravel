@@ -25,11 +25,13 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('info/updateImage', 'App\Http\Controllers\Api\UserController@updateImage');
     Route::post('info/change-Password', 'App\Http\Controllers\Api\UserController@changePassword');
     Route::delete('logout', 'App\Http\Controllers\Api\UserController@logout');
+    Route::get('bookmarks/{user_id}', 'App\Http\Controllers\Api\Usercontroller@getBookmarks');
 });
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
 Route::post('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');
 Route::get('places', 'App\Http\Controllers\Api\PlaceController@getAllPlace');
+Route::get('places/search/{placeName}', 'App\Http\Controllers\Api\PlaceController@searchPlace');
 Route::get('popularPlaces', 'App\Http\Controllers\Api\PlaceController@getPopularPlace');
 Route::get('places/{id}', 'App\Http\Controllers\Api\PlaceController@placeDetail');
 

@@ -8,6 +8,7 @@ use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Models\Place;
 
 class User extends Authenticatable
 {
@@ -61,5 +62,10 @@ class User extends Authenticatable
         $url = 'https://dulichvgo.herokuapp.com/api/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
+    }
+
+    public function places()
+    {
+        return $this->belongsToMany(Place::class, 'bookmarks');
     }
 }

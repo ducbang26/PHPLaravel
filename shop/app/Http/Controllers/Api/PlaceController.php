@@ -39,4 +39,10 @@ class PlaceController extends Controller
             return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
         }
     }
+
+    public function searchPlace($placeName)
+    {
+        $place = Place::with(['placeImage'])->where('place_name', 'like' , '%'.$placeName.'%')->get();
+        return response()->json(['data' => $place], $this-> successStatus);
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Place;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\PasswordReset;
@@ -62,8 +63,9 @@ class UserController extends Controller
 
     public function info() 
     { 
-        $user = Auth::user(); 
-        return response()->json(['data' => $user], $this-> successStatus); 
+        $user = Auth::user();
+        $bookmarks = User::find($user->id)->places()->get();
+        return response()->json(['data' => $bookmarks], $this-> successStatus);
     } 
 
     public function updateImage(Request $request) 
