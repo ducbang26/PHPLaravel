@@ -25,9 +25,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('info/updateImage', 'App\Http\Controllers\Api\UserController@updateImage');
     Route::post('info/change-Password', 'App\Http\Controllers\Api\UserController@changePassword');
     Route::delete('logout', 'App\Http\Controllers\Api\UserController@logout');
-    Route::get('bookmarks', 'App\Http\Controllers\Api\Usercontroller@getBookmark');
 });
 
+Route::get('bookmarks', 'App\Http\Controllers\Api\Usercontroller@getBookmark');
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
 Route::post('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');
 Route::get('places', 'App\Http\Controllers\Api\PlaceController@getAllPlace');
