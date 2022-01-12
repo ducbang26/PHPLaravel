@@ -64,8 +64,7 @@ class UserController extends Controller
     public function info() 
     { 
         $user = Auth::user();
-        $bookmarks = User::find($user->id)->places()->get();
-        return response()->json(['data' => $bookmarks], $this-> successStatus);
+        return response()->json(['data' => $user], $this-> successStatus);
     } 
 
     public function updateImage(Request $request) 
@@ -161,4 +160,11 @@ class UserController extends Controller
             return response()->json(['status' => 'error','message' => $e->getMessage(),'data'=>[]],500);
         }
     }
+
+    public function getBookmark() 
+    { 
+        $user = Auth::user();
+        $bookmarks = User::find($user->id)->places()->get();
+        return response()->json(['data' => $bookmarks], $this-> successStatus);
+    } 
 }
