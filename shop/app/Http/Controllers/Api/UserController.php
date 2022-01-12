@@ -166,5 +166,5 @@ class UserController extends Controller
         $user = Auth::user();
         $bookmarks = User::find($user->id)->places()->get();
         return response()->json(['data' => $bookmarks], $this-> successStatus);
-    } 
+    }
 }
