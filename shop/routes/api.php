@@ -32,6 +32,7 @@ Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@se
 Route::post('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');
 Route::get('places', 'App\Http\Controllers\Api\PlaceController@getAllPlace');
 Route::get('places/search/{placeName}', 'App\Http\Controllers\Api\PlaceController@searchPlace');
+Route::get('places/filter/{region}', 'App\Http\Controllers\Api\PlaceController@searchPlaceByRegion');
 Route::get('popularPlaces', 'App\Http\Controllers\Api\PlaceController@getPopularPlace');
 Route::get('places/{id}', 'App\Http\Controllers\Api\PlaceController@placeDetail');
 

@@ -45,4 +45,10 @@ class PlaceController extends Controller
         $place = Place::with(['placeImage'])->where('place_name', 'like' , '%'.$placeName.'%')->get();
         return response()->json(['data' => $place], $this-> successStatus);
     }
+
+    public function searchPlaceByRegion($region)
+    {
+        $place = Place::with(['placeImage'])->where('region', 'like' , '%'.$region.'%')->get();
+        return response()->json(['data' => $place], $this-> successStatus);
+    }
 }
