@@ -167,4 +167,18 @@ class UserController extends Controller
         $bookmarks = User::find($user->id)->places()->get();
         return response()->json(['data' => $bookmarks], $this-> successStatus);
     }
+
+    public function bookmarkPlace(Request $request) 
+    { 
+        $user = Auth::user();
+        User::find($user->id)->places()->attach($request->place_id);
+        return response()->json(['data' => 'Da luu dia diem!'], $this-> successStatus);
+    }
+
+    public function unbookmarkPlace(Request $request) 
+    { 
+        $user = Auth::user();
+        User::find($user->id)->places()->detach($request->place_id);
+        return response()->json(['data' => 'Xoa khoi dia diem da luu!'], $this-> successStatus);
+    }
 }

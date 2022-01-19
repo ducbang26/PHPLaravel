@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('info/change-Password', 'App\Http\Controllers\Api\UserController@changePassword');
     Route::delete('logout', 'App\Http\Controllers\Api\UserController@logout');
     Route::get('bookmarks', 'App\Http\Controllers\Api\UserController@getBookmark');
+    Route::post('bookmark-place', 'App\Http\Controllers\Api\UserController@bookmarkPlace');
+    Route::post('unbookmark-place', 'App\Http\Controllers\Api\UserController@unbookmarkPlace');
 });
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
