@@ -23,7 +23,7 @@ class PlaceSeeder extends Seeder
             'kinhDo'=>'11.9248092',
             'viDo'=>'108.4610882',
             'popular'=>true,
-            'region'=> 'Tây Nguyên',
+            'region'=> 'taynguyen',
             ],
             ['place_name'=>'Tp. Hội An', 
             'star'=>5, 
@@ -33,7 +33,7 @@ class PlaceSeeder extends Seeder
             'kinhDo'=>'15.9184459',
             'viDo'=>'108.3470329',
             'popular'=>true,
-            'region'=> 'Duyên hải Nam Trung Bộ',
+            'region'=> 'duyenhainamtrungbo',
             ],
             ['place_name'=>'Mũi Né', 
             'star'=>5, 
@@ -43,7 +43,7 @@ class PlaceSeeder extends Seeder
             'kinhDo'=>'10.9605212',
             'viDo'=>'108.2757498',
             'popular'=>false,
-            'region'=> 'Đông Nam Bộ',
+            'region'=> 'dongnambo',
             ],
         ]);
     }
