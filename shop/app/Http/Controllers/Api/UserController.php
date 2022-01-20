@@ -164,7 +164,7 @@ class UserController extends Controller
     public function getBookmark() 
     { 
         $user = Auth::user();
-        $bookmarks = User::find($user->id)->places()->get();
+        $bookmarks = User::find($user->id)->places()->with(['placeImage'])->get();
         return response()->json(['data' => $bookmarks], $this-> successStatus);
     }
 

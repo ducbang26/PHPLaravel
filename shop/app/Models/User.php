@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Place;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -67,5 +68,10 @@ class User extends Authenticatable
     public function places()
     {
         return $this->belongsToMany(Place::class, 'bookmarks');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id', 'id');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PlaceImages;
 use App\Models\User;
+use App\Models\Post;
 
 class Place extends Model
 {
@@ -26,6 +27,11 @@ class Place extends Model
     public function placeImage()
     {
         return $this->hasMany(PlaceImages::class, 'place_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'place_id', 'id');
     }
 
     public function users()

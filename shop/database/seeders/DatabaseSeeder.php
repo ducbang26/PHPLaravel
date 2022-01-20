@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PlaceSeeder::class);
         $this->call(PlaceImageSeeder::class);
         $this->call(BookmarkSeeder::class);
+        $this->call(PostSeeder::class);
+        $this->call(PostImagesSeeder::class);
     }
 }
