@@ -67,6 +67,12 @@ class UserController extends Controller
         return response()->json(['data' => $user], $this-> successStatus);
     } 
 
+    public function infoById( $id) 
+    { 
+        $user = User::where('id', $id)->get();
+        return response()->json(['data' => $user], $this-> successStatus);
+    }
+
     public function updateImage(Request $request) 
     {
         try {

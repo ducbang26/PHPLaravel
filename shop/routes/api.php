@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
 Route::post('reset-password/{token}', 'App\Http\Controllers\Api\NewPasswordController@reset');
+Route::get('info-by-id/{id}', 'App\Http\Controllers\Api\UserController@infoById');
 Route::get('places', 'App\Http\Controllers\Api\PlaceController@getAllPlace');
 Route::get('places/search/{placeName}', 'App\Http\Controllers\Api\PlaceController@searchPlace');
 Route::get('places/filter/{region}', 'App\Http\Controllers\Api\PlaceController@searchPlaceByRegion');
