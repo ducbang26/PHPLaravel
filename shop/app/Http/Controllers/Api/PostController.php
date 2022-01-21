@@ -76,10 +76,10 @@ class PostController extends Controller
             'popular' => $request->popular
         ]);
         if($request->hasFile('images')){
-            $files[] = $request->file('images');
+            $files = $request->file('images');
             foreach ($files as $file){
                 $post_image = new PostImages;
-                $name = '/'.time() . '.' . $file->getClientOriginalExtension();
+                $name = 'https://dulichvgo.herokuapp.com/uploads/post_images/'.time() . '.' . $file->getClientOriginalExtension();
                 // $request['post_id']=$post->id;
                 // $request['image']=$name;
                 $destinationPath = public_path('/uploads/post_images/');
