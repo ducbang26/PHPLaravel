@@ -9,6 +9,8 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Place;
 use App\Models\PostImages;
+use Validator;
+use File;
 
 class PostController extends Controller
 {
@@ -52,5 +54,47 @@ class PostController extends Controller
     { 
         $posts = Place::find($request->place_id)->posts()->with(['postImage'])->get();
         return response()->json(['data' => $posts], $this-> successStatus);
+    }
+
+    public function createNewPost(Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'place_id' => 'required', 
+            'user_id' => 'required', 
+            'content' => 'required',
+            'star' => 'required', 
+            'popular' => 'required',
+        ]);
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+        $post = Post::create([
+            'place_id' => $request->place_id, 
+            'user_id' => $request->user_id,
+            'content' => $request->content,
+            'star' => $request->star,
+            'popular' => $request->popular
+        ]);
+        if($request->hasFile('images')){
+            $files = $request->file('images');
+            foreach ($files as $file){
+                $post_image = new PostImages;
+                $name = 'https://dulichvgo.herokuapp.com/uploads/post_images/'.time() . '.' . $file->getClientOriginalExtension();
+                // $request['post_id']=$post->id;
+                // $request['image']=$name;
+                $destinationPath = public_path('/uploads/post_images/');
+                $file->move($destinationPath,$name);
+                $post_image->post_id = $post->id;
+                $post_image->image = $name;
+                $post_image->save();
+                // $post_image::create([
+                //     'post_id' => $post->id,
+                //     'image' => $name
+                // ]);
+            }
+        } 
+            return response()->json([
+                'data'=>$post
+        ], $this-> successStatus); 
     }
 }

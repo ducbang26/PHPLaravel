@@ -17,6 +17,7 @@ class CreatePostImagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('post_id');
             $table->string('image', 255);
+            $table->timestamps();
         });
     }
 
