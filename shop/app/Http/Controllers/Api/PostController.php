@@ -97,4 +97,26 @@ class PostController extends Controller
                 'data'=>$post
         ], $this-> successStatus); 
     }
+
+    public function editPost(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'content' => 'required',
+            'star' => 'required',
+        ]);
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $post = $request->post();
+            
+
+        $post->update([
+            'name' => $request->name,
+            'star' => $request->star
+        ]);
+
+        return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
+
+    }
 }

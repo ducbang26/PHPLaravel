@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('bookmark-place', 'App\Http\Controllers\Api\UserController@bookmarkPlace');
     Route::post('unbookmark-place', 'App\Http\Controllers\Api\UserController@unbookmarkPlace');
     Route::get('post-by-user', 'App\Http\Controllers\Api\PostController@getPostByUser');
+    Route::post('post/create', 'App\Http\Controllers\Api\PostController@createNewPost');
+    Route::post('post/edit/{id}', 'App\Http\Controllers\Api\PostController@editPost');
 });
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
@@ -42,7 +44,5 @@ Route::get('places/{id}', 'App\Http\Controllers\Api\PlaceController@placeDetail'
 Route::get('posts', 'App\Http\Controllers\Api\PostController@getAllPost');
 Route::get('posts/{id}', 'App\Http\Controllers\Api\PostController@postDetail');
 Route::get('post-by-place/{place_id}', 'App\Http\Controllers\Api\PostController@getPostByPlace');
-Route::post('post/create', 'App\Http\Controllers\Api\PostController@createNewPost');
-
 
 
