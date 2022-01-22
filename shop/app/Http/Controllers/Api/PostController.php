@@ -98,7 +98,7 @@ class PostController extends Controller
         ], $this-> successStatus); 
     }
 
-    public function editPost(Request $request)
+    public function editPost(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [ 
             'content' => 'required',
@@ -108,8 +108,7 @@ class PostController extends Controller
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $post = $request->post();
-            
+        $post = Post::find($id);
 
         $post->update([
             'content' => $request->content,
