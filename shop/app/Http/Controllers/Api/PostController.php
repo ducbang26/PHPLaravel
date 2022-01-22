@@ -112,7 +112,7 @@ class PostController extends Controller
             
 
         $post->update([
-            'name' => $request->name,
+            'content' => $request->content,
             'star' => $request->star
         ]);
 
