@@ -129,4 +129,11 @@ class PostController extends Controller
         return response()->json(['status'=>'Da xoa bai viet!'], $this-> successStatus);
 
     }
+
+    public function popularPost() 
+    {
+        $data = Post::with(['postImage'])->where('popular', 1)->get();
+
+        return response()->json(['data' => $data], $this-> successStatus);
+    }
 }
