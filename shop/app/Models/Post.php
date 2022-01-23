@@ -6,6 +6,7 @@ use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PostImages;
+use App\Models\Place;
 
 class Post extends Model
 {
@@ -22,5 +23,10 @@ class Post extends Model
     public function postImage()
     {
         return $this->hasMany(PostImages::class, 'post_id', 'id');
+    }
+
+    public function places()
+    {
+        return $this->beLongsTo(Place::class, 'place_id', 'id');
     }
 }

@@ -46,13 +46,13 @@ class PostController extends Controller
     public function getPostByUser() 
     { 
         $user = Auth::user();
-        $posts = User::find($user->id)->posts()->with(['postImage'])->get();
+        $posts = User::find($user->id)->posts()->with(['postImage'])->orderBy('created_at', 'desc')->get();
         return response()->json(['data' => $posts], $this-> successStatus);
     }
 
     public function getPostByPlace(Request $request) 
     { 
-        $posts = Place::find($request->place_id)->posts()->with(['postImage'])->get();
+        $posts = Place::find($request->place_id)->posts()->with(['postImage'])->orderBy('created_at', 'desc')->get();
         return response()->json(['data' => $posts], $this-> successStatus);
     }
 
@@ -116,6 +116,17 @@ class PostController extends Controller
         ]);
 
         return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
+
+    }
+
+    public function deletePost(Request $request, $id)
+    {
+
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return response()->json(['status'=>'Da xoa bai viet!'], $this-> successStatus);
 
     }
 }

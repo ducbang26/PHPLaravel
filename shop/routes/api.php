@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('post-by-user', 'App\Http\Controllers\Api\PostController@getPostByUser');
     Route::post('post/create', 'App\Http\Controllers\Api\PostController@createNewPost');
     Route::post('post/edit/{id}', 'App\Http\Controllers\Api\PostController@editPost');
+    Route::delete('post/{id}', 'App\Http\Controllers\Api\PostController@deletePost');
 });
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
