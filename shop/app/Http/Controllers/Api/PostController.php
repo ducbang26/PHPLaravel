@@ -25,7 +25,7 @@ class PostController extends Controller
 
     public function getPopularPost()
     {
-        $data = Post::with(['postImage'])->withCount('likes')->with('likes')->where('popular', 1)->orderBy('likes_count', 'desc')->get();
+        $data = Post::with(['postImage'])->likes()->withCount('likes')->with('likes')->where('popular', 1)->orderBy('likes_count', 'desc')->get();
 
         return response()->json(['data' => $data], $this-> successStatus);
     }
