@@ -28,6 +28,14 @@ class CreateForeignkey extends Migration
         Schema::table('bookmarks', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::table('likes', function (Blueprint $table) {
+            $table->foreign('post_id')->references('id')->on('posts');
+        });
+
+        Schema::table('likes', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
