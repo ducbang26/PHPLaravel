@@ -18,7 +18,7 @@ class PostController extends Controller
 
     public function getAllPost() 
     {
-        $data = Post::with(['postImage'])->get();
+        $data = Post::with(['postImage'])->withCount('likes')->with('likes')->orderBy('likes_count', 'desc')->get();
 
         return response()->json(['data' => $data], $this-> successStatus);
     }

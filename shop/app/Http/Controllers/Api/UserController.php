@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Place;
+use App\Models\Like;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\PasswordReset;
@@ -186,5 +187,22 @@ class UserController extends Controller
         $user = Auth::user();
         User::find($user->id)->places()->detach($request->place_id);
         return response()->json(['data' => 'Xoa khoi dia diem da luu!'], $this-> successStatus);
+    }
+
+    public function likePost(Request $request) 
+    { 
+        $user = Auth::user();
+        //User::find($user->id)->posts()->attach($request->post_id);
+        Like::insert([
+            'user_id' => $user->id,
+            'post_id' => $request->post_id
+        ]);
+        return response()->json(['data' => 'Da like bai viet!'], $this-> successStatus);
+    }
+
+    public function unlikePost($id) 
+    {
+        Like::find($id)->delete();
+        return response()->json(['data' => 'da unlike bai viet'], $this-> successStatus);
     }
 }
