@@ -47,4 +47,4 @@ Route::get('places/{id}', 'App\Http\Controllers\Api\PlaceController@placeDetail'
 Route::get('posts', 'App\Http\Controllers\Api\PostController@getAllPost');
 Route::get('posts/{id}', 'App\Http\Controllers\Api\PostController@postDetail');
 Route::get('post-by-place/{place_id}', 'App\Http\Controllers\Api\PostController@getPostByPlace');
-Route::get('popularPost', 'App\Http\Controllers\Api\PostController@popularPost');
+Route::get('popularPost', 'App\Http\Controllers\Api\PostController@getPopularPost');

@@ -18,15 +18,14 @@ class PostController extends Controller
 
     public function getAllPost() 
     {
-        $data = Post::with(['postImage'])->withCount('likes')->with('likes')->orderBy('likes_count', 'desc')->get();
+        $data = Post::with(['postImage'])->withCount('likes')->with('likes')->get();
 
         return response()->json(['data' => $data], $this-> successStatus);
     }
 
     public function getPopularPost()
     {
-        $data = Post::with(['postImage'])->where('popular', 1);
-        $data->likes()->with('likes')->get();
+        $data = Post::with(['postImage'])->withCount('likes')->with(['likes'])->where('popular', 1)->orderBy('likes_count', 'desc')->get();
 
         return response()->json(['data' => $data], $this-> successStatus);
     }
