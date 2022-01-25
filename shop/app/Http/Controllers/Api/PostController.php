@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Place;
+use App\Models\Report;
 use App\Models\PostImages;
 use Validator;
 use File;
@@ -135,5 +136,15 @@ class PostController extends Controller
         $data = Post::with(['postImage'])->where('popular', 1)->get();
 
         return response()->json(['data' => $data], $this-> successStatus);
+    }
+
+    public function reportPost(Request $request, $id)
+    {
+        Report::create([
+            'post_id' => $id,
+            'content' => $request->content,
+        ]);
+
+        return response()->json(['data' => 'da gui bao cao'], $this-> successStatus);
     }
 }

@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::delete('post/{id}', 'App\Http\Controllers\Api\PostController@deletePost');
     Route::post('like', 'App\Http\Controllers\Api\UserController@likePost');
     Route::delete('unlike/{id}', 'App\Http\Controllers\Api\UserController@unlikePost');
+    Route::post('post/report/{id}', 'App\Http\Controllers\Api\PostController@reportPost');
 });
 
 Route::post('reset-password', 'App\Http\Controllers\Api\NewPasswordController@sendMail');
