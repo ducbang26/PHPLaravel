@@ -193,11 +193,11 @@ class UserController extends Controller
     { 
         $user = Auth::user();
         //User::find($user->id)->posts()->attach($request->post_id);
-        Like::insert([
+        $like = Like::insert([
             'user_id' => $user->id,
             'post_id' => $request->post_id
         ]);
-        return response()->json(['data' => 'Da like bai viet!'], $this-> successStatus);
+        return response()->json(['data' => 'Da like bai viet!', 'like' => $like], $this-> successStatus);
     }
 
     public function unlikePost($id) 
