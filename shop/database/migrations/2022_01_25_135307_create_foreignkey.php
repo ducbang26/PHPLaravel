@@ -36,6 +36,14 @@ class CreateForeignkey extends Migration
         Schema::table('likes', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::table('hotels', function (Blueprint $table) {
+            $table->foreign('place_id')->references('id')->on('places');
+        });
+
+        Schema::table('reports', function (Blueprint $table) {
+            $table->foreign('post_id')->references('id')->on('posts');
+        });
     }
 
     /**

@@ -38,4 +38,9 @@ class Place extends Model
     {
         return $this->belongsToMany(User::class, 'bookmarks');
     }
+
+    public function hotels()
+    {
+        return $this->hasMany(Hotel::class, 'place_id', 'id');
+    }
 }

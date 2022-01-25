@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PostSeeder::class);
         $this->call(PostImagesSeeder::class);
         $this->call(LikesSeeder::class);
+        $this->call(HotelSeeder::class);
     }
 }

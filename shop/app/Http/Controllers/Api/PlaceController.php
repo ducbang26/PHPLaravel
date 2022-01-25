@@ -31,7 +31,7 @@ class PlaceController extends Controller
     { 
         try {
 
-            $place = Place::with(['placeImage'])->where('id', $id)->get();
+            $place = Place::with(['placeImage'])->with(['hotels'])->where('id', $id)->get();
 
             return response()->json(['data' => $place], $this-> successStatus);
 
