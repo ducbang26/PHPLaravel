@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PostSeeder extends Seeder
 {
@@ -20,18 +21,24 @@ class PostSeeder extends Seeder
             'content'=>'Đà Lạt đẹp quá bà con ơi. Tết này đi là hết ý!!',
             'star'=>5,
             'popular'=>true,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             ['place_id'=>2,
             'user_id'=>1,
             'content'=>'Phố cổ Hội An  này tui đi có tầm chục lần mà có chán đâu hehe',
             'star'=>5,
             'popular'=>false,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             ['place_id'=>3,
             'user_id'=>2,
             'content'=>'resort Mũi Né trên cả tuyệt vời á anh em. Có dịp tui sẽ trở lại',
             'star'=>5,
-            'popular'=>true
+            'popular'=>true,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
         ]);
     }

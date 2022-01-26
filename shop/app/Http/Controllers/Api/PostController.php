@@ -51,6 +51,12 @@ class PostController extends Controller
         return response()->json(['data' => $posts], $this-> successStatus);
     }
 
+    public function getPostByUserId($id) 
+    { 
+        $posts = User::find($id)->posts()->withCount('likes')->with('likes')->with(['postImage'])->orderBy('created_at', 'desc')->get();
+        return response()->json(['data' => $posts], $this-> successStatus);
+    }
+
     public function getPostByPlace(Request $request) 
     { 
         $posts = Place::find($request->place_id)->posts()->withCount('likes')->with('likes')->with(['postImage'])->orderBy('created_at', 'desc')->get();
