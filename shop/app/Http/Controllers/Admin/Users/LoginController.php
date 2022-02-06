@@ -28,11 +28,21 @@ class LoginController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ], $request->input('remember'))) {
-            return redirect()->route('admin');
+
+            $user = Auth::user();
+
+            session(['userAvatar' => $user->profileImg]);
+            session(['userFullname' => $user->name]);
+            session(['userId' => $user->id]);
+
+            if($user->isAdmin==1){
+                return redirect()->route('admin');
+            }
         }
 
         Session::flash('error', 'Email hoặc Password không chính xác');
 
         return redirect()->back();
     }
+    
 }
