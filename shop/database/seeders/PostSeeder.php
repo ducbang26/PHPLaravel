@@ -21,6 +21,7 @@ class PostSeeder extends Seeder
             'content'=>'Đà Lạt đẹp quá bà con ơi. Tết này đi là hết ý!!',
             'star'=>5,
             'popular'=>true,
+            'status'=>true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -29,6 +30,7 @@ class PostSeeder extends Seeder
             'content'=>'Phố cổ Hội An  này tui đi có tầm chục lần mà có chán đâu hehe',
             'star'=>5,
             'popular'=>false,
+            'status'=>true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -37,6 +39,7 @@ class PostSeeder extends Seeder
             'content'=>'resort Mũi Né trên cả tuyệt vời á anh em. Có dịp tui sẽ trở lại',
             'star'=>5,
             'popular'=>true,
+            'status'=>true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],

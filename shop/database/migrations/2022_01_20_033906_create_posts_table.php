@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('content');
             $table->integer('star');
             $table->boolean('popular');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
