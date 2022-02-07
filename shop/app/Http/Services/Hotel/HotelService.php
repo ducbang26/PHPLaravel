@@ -68,12 +68,12 @@ class HotelService
             $image_uploaded = $request->image;
         }
 
-        $Hotel->place_id = (int) $request->input('place_id');
-        $Hotel->hotel_name = (String) $request->input('hotel_name');
+        $Hotel->place_id = $request->place_id;
+        $Hotel->hotel_name = $request->hotel_name;
         $Hotel->image = $image_uploaded;
-        $Hotel->location = (string) $request->input('location');
-        $Hotel->kinhDo = (String) $request->input('kinhDo');
-        $Hotel->viDo = (String) $request->input('kinhDo');
+        $Hotel->location = $request->location;
+        $Hotel->kinhDo = $request->kinhDo;
+        $Hotel->viDo = $request->kinhDo;
         $Hotel->save();
 
         $request->session()->flash('success', 'Cập nhật thành công khách sạn');

@@ -13,7 +13,7 @@ class Helper
             <tr>
             <td>' . $hotel->id . '</td>
             <td>' . $hotel->hotel_name . '</td>
-            <td>' . $hotel->updated_at . '</td>
+            <td><img src="' . $hotel->image . '" style="max-height: 100px; max-width: 100px" alt=""></td>
             <td>
             <a class="btn btn-primary btn-sm" href="/admin/hotels/edit/' . $hotel->id .'"><i class="fas fa-edit"></i></a>
             <a href="#" class="btn btn-danger btn-sm" onclick="removeRow(' . $hotel->id .', \'/admin/hotels/destroy\')"><i class="fas fa-trash"></i></a>

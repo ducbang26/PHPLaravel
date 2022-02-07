@@ -5,8 +5,8 @@
         <thead>
             <tr>
                 <th style="width:50px">ID</th>
-                <th>NAME</th>
-                <th>UPDATE</th>
+                <th>KHÁCH SẠN</th>
+                <th>HÌNH ẢNH</th>
                 <th style="width:100px">&nbsp;</th>
             </tr>
         </thead>
