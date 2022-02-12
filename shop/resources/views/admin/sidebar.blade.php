@@ -55,8 +55,78 @@
                   <p>Danh Sách Khách Sạn</p>
                 </a>
               </li>
-              
+
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                Người Dùng
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/users/list" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vô Hiệu Hóa/ Kích Hoạt</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-paste"></i>
+              <p>
+                Bài Viết
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/posts/list" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vô Hiệu Hóa/ Kích Hoạt</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="/admin/posts/report" class="nav-link">
+              <i class="nav-icon fas fa-lock"></i>
+              <p>
+                Tố Cáo Bài Viết
+
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-location-arrow"></i>
+              <p>
+               Địa Danh
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/places/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tạo Địa Danh Mới</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/places/list" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Xóa/Sửa Địa Danh</p>
+                </a>
+              </li>
+            </ul>
+
           </li>
         </ul>
       </nav>
