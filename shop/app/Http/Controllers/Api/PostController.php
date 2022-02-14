@@ -19,14 +19,14 @@ class PostController extends Controller
 
     public function getAllPost() 
     {
-        $data = Post::with(['postImage'])->withCount('likes')->with('likes')->get();
+        $data = Post::with(['postImage'])->where('status', 1)->withCount('likes')->with('likes')->get();
 
         return response()->json(['data' => $data], $this-> successStatus);
     }
 
     public function getPopularPost()
     {
-        $data = Post::with(['postImage'])->withCount('likes')->with(['likes'])->where('popular', 1)->orderBy('likes_count', 'desc')->get();
+        $data = Post::with(['postImage'])->where('status', 1)->withCount('likes')->with(['likes'])->where('popular', 1)->orderBy('likes_count', 'desc')->get();
 
         return response()->json(['data' => $data], $this-> successStatus);
     }
@@ -47,13 +47,13 @@ class PostController extends Controller
     public function getPostByUser() 
     { 
         $user = Auth::user();
-        $posts = User::find($user->id)->posts()->withCount('likes')->with('likes')->with(['postImage'])->orderBy('created_at', 'desc')->get();
+        $posts = User::find($user->id)->posts()->where('status', 1)->withCount('likes')->with('likes')->with(['postImage'])->orderBy('created_at', 'desc')->get();
         return response()->json(['data' => $posts], $this-> successStatus);
     }
 
     public function getPostByUserId($id) 
     { 
-        $posts = User::find($id)->posts()->withCount('likes')->with('likes')->with(['postImage'])->orderBy('created_at', 'desc')->get();
+        $posts = User::find($id)->posts()->where('status', 1)->withCount('likes')->with('likes')->with(['postImage'])->orderBy('created_at', 'desc')->get();
         return response()->json(['data' => $posts], $this-> successStatus);
     }
 

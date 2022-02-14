@@ -29,7 +29,7 @@ class UserController extends Controller
          
             if(Auth::attempt($login)){ 
                 $user = Auth::user(); 
-                if($user->isAdmin==0){
+                if($user->isAdmin==0 && $user->status==1){
                     $success['token'] =  $user->createToken('MyApp')-> accessToken; 
                     return response()->json(['data' => $success], $this-> successStatus); 
                 } else {
