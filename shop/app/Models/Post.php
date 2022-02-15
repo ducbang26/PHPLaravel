@@ -19,7 +19,8 @@ class Post extends Model
         'user_id',
         'star',
         'content',
-        'popular'
+        'popular',
+        'status'
     ];
 
     public function postImage()
