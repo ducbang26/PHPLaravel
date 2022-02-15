@@ -71,6 +71,7 @@ class PostController extends Controller
             'content' => 'required',
             'star' => 'required', 
             'popular' => 'required',
+            'status' => 'required',
         ]);
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
@@ -80,7 +81,8 @@ class PostController extends Controller
             'user_id' => $request->user_id,
             'content' => $request->content,
             'star' => $request->star,
-            'popular' => $request->popular
+            'popular' => $request->popular,
+            'status' => $request->status,
         ]);
         if($request->hasFile('images')){
             $files = $request->file('images');
