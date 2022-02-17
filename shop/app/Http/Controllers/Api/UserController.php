@@ -58,8 +58,8 @@ class UserController extends Controller
             'name' => $request->name, 
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'isAdmin' => false,
-            'status' => true,
+            'isAdmin' => $request->isAdmin,
+            'status' => $request->status
         ]); 
         $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             return response()->json([
