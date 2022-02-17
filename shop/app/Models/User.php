@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'profileImg',
-        'isAdmin'
+        'isAdmin',
+        'status'
     ];
     public $appends = [
         'profile_image_url',
