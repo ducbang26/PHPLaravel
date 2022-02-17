@@ -24,6 +24,8 @@ class PostImagesSeeder extends Seeder
             ['post_id'=>2, 'image'=>'https://dulichvgo.herokuapp.com/uploads/post_images/hoian4.jpg'],
             ['post_id'=>3, 'image'=>'https://dulichvgo.herokuapp.com/uploads/post_images/muine1.jpg'],
             ['post_id'=>3, 'image'=>'https://dulichvgo.herokuapp.com/uploads/post_images/muine2.jpg'],
+            ['post_id'=>4, 'image'=>'https://dulichvgo.herokuapp.com/uploads/post_images/caurong1.jpg'],
+            ['post_id'=>4, 'image'=>'https://dulichvgo.herokuapp.com/uploads/post_images/caurong2.jpg'],
         ]);
     }
 }

@@ -43,6 +43,15 @@ class PostSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
+            ['place_id'=>4,
+            'user_id'=>3,
+            'content'=>'Cầu này đẹp đẹp quá chời',
+            'star'=>5,
+            'popular'=>true,
+            'status'=>true,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
         ]);
     }
 }

@@ -24,6 +24,10 @@ class PlaceImageSeeder extends Seeder
             ['place_id'=>2, 'image'=>'https://dulichvgo.herokuapp.com/uploads/place_images/hoian4.jpg'],
             ['place_id'=>3, 'image'=>'https://dulichvgo.herokuapp.com/uploads/place_images/muine1.jpg'],
             ['place_id'=>3, 'image'=>'https://dulichvgo.herokuapp.com/uploads/place_images/muine2.jpg'],
+            ['place_id'=>4, 'image'=>'https://dulichvgo.herokuapp.com/uploads/place_images/cauvang1.jpg'],
+            ['place_id'=>4, 'image'=>'https://dulichvgo.herokuapp.com/uploads/place_images/cauvang2.jpg'],            
+            ['place_id'=>5, 'image'=>'https://dulichvgo.herokuapp.com/uploads/place_images/phuquoc1.jpg'],
+            ['place_id'=>5, 'image'=>'https://dulichvgo.herokuapp.com/uploads/place_images/phuquoc2.jpg'],
         ]);
     }
 }
