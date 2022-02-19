@@ -41,10 +41,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('reportShow/{report}', [PostsController::class, 'reportShow']);
         });
         Route::prefix('places')->group(function () {
+            Route::get('add', [PlacesController::class, 'create']);
+            Route::post('add', [PlacesController::class, 'store']);
             Route::get('list', [PlacesController::class, 'index']);
-            Route::get('show/{places}', [PlacesController::class, 'show']);
-            Route::get('popular/{places}', [PlacesController::class, 'popular']);
-            Route::get('unpopular/{places}', [PlacesController::class, 'unpopular']);
+            Route::get('edit/{place}', [PlacesController::class, 'show']);
+            Route::post('edit/{place}', [PlacesController::class, 'update']);
+            Route::DELETE('destroy', [PlacesController::class, 'destroy']);
         });
     });
 });

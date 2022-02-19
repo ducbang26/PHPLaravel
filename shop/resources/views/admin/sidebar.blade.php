@@ -112,7 +112,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin/places/create" class="nav-link">
+                <a href="/admin/places/add" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tạo Địa Danh Mới</p>
                 </a>

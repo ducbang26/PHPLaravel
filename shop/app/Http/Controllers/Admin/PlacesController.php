@@ -2,65 +2,70 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Place\CreateFormRequest;
 use App\Http\Services\Place\PlaceService;
 use App\Models\Place;
-use App\Models\Report;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
 class PlacesController extends Controller
 {
-    protected $userService;
+    protected $placeService;
 
     public function __construct(PlaceService $placeService)
     {
         $this->placeService = $placeService;
     }
-    public function show(place $place)
+    public function create()
     {
-        return view('admin.places.show', [
-            'title' => 'Xem Bài Viết ',
-            'places' => $place,
-            'places' => $this->placeService->getPlace(),
-            'users'=>$this->placeService->getUser(),
-            'placeimages'=>$this->placeService->getImageById($place->id)
+        return view('admin.place.add', [
+            'title' => 'Thêm Địa Danh Mới',
         ]);
     }
-    public function reportShow(Report $report)
+
+    public function store(CreateFormRequest $request)
     {
-        return view('admin.places.reportShow', [
-            'title' => 'Xem Địa Điểm ',
-            'places' => $this->placeService->getAll(),
-            'reports'=>$report,
-            'places' => $this->placeService->getPlace(),
-            'users'=>$this->placeService->getUser(),
-            'placeimages'=>$this->placeService->getImage()
-        ]);
+        $this->placeService->create($request);
+
+        return redirect()->back();
     }
-    public function report()
-    {
-        return view('admin.places.reportList', [
-            'title' => 'Tố Cáo Địa Điểm ',
-            'reports' => $this->placeService->getReport(),
-        ]);
-    }
+
     public function index()
     {
-        return view('admin.places.list', [
-            'title' => 'Danh Sách Địa Điểm',
+        return view('admin.place.list', [
+            'title' => 'Danh Sách Địa Danh Mới Nhất',
             'places' => $this->placeService->getAll()
         ]);
     }
-    public function unactive(place $place)
+
+    public function show(Place $place)
     {
-        $place->status=0;
-        $place->update();
-        return redirect('/admin/places/list');
+        return view('admin.place.edit', [
+            'title' => 'Chỉnh Sửa Địa Danh: ' . $place->place_name,
+            'place' => $place,
+        ]);
     }
-    public function active(place $place)
+
+    public function update(Place $place, CreateFormRequest $request)
     {
-        $place->status=1;
-        $place->update();
+        $this->placeService->update($request, $place);
+
         return redirect('/admin/places/list');
     }
 
+    public function destroy(Request $request): JsonResponse
+    {
+        $result = $this->placeService->destroy($request);
+        if ($result) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Xóa thành công Địa Danh'
+            ]);
+        }
+
+        return response()->json([
+            'error' => true
+        ]);
+    }
 }

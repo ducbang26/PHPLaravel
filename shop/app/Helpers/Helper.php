@@ -37,11 +37,11 @@ class Helper
             <td>' . $place->description . '</td> ';
             if($place->popular==0)
             {
-                $html .= ' <td><a class="btn btn-success btn-sm" href="/admin/places/active/' . $place->id .'"><i class="fas fa-check"></i></a> </td>';
+                $html .= '<td><a class="btn btn-success btn-sm" href="/admin/places/popular/' . $place->id .'"><i class="fas fa-check"> Active</i></a> </td>';
             }else{
-                $html .= ' <td><a class="btn btn-danger btn-sm" href="/admin/places/edit/' . $place->id .'"><i class="fas fa-window-close"></i></a>
+                $html .= '<td><a class="btn btn-danger btn-sm" href="/admin/places/unpopular/' . $place->id .'"><i class="fas fa-window-close"> Nonactive</i></a>
                 </td>
-                ';
+              ';
             }
             $html .= '
             <td>
