@@ -47,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('edit/{place}', [PlacesController::class, 'show']);
             Route::post('edit/{place}', [PlacesController::class, 'update']);
             Route::DELETE('destroy', [PlacesController::class, 'destroy']);
+            Route::get('popular/{places}', [PlacesController::class, 'popular']);
+            Route::get('unpopular/{places}', [PlacesController::class, 'unpopular']);
+
         });
     });
 });
