@@ -68,4 +68,19 @@ class PlacesController extends Controller
             'error' => true
         ]);
     }
+    public function unpopular(Place $places)
+    {
+        $places->popular=0;
+        $places->update();
+        return redirect('/admin/places/list');
+    }
+    public function popular(Place $places)
+    {
+        $places->popular=1;
+        $places->update();
+        return redirect('/admin/places/list');
+    }
+
+
+
 }
