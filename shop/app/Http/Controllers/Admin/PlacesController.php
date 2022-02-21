@@ -44,6 +44,7 @@ class PlacesController extends Controller
         return view('admin.place.edit', [
             'title' => 'Chỉnh Sửa Địa Danh: ' . $place->place_name,
             'place' => $place,
+            'images' => $this->placeService->getImageById($place->id)
         ]);
     }
 

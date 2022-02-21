@@ -26,7 +26,7 @@ class PlaceService
 
             if($request->hasFile('image')){
                 $image= $request->file('image');
-                $name = 'https://dulichvgo.herokuapp.com/uploads/place_images/'.time() . '.' . $image->getClientOriginalExtension();
+                $name = 'http://127.0.0.1:8000/uploads/place_images/'.time() . '.' . $image->getClientOriginalExtension();
                 $destinationPath = public_path('/uploads/place_images/');
                 $image->move($destinationPath,$name);
                 $image_uploaded = $name;
@@ -63,7 +63,7 @@ class PlaceService
     {
         if($request->hasFile('image')){
             $image= $request->file('image');
-            $name = 'https://dulichvgo.herokuapp.com/uploads/place_images/'.time() . '.' . $image->getClientOriginalExtension();
+            $name = 'http://127.0.0.1:8000/uploads/place_images/'.time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/uploads/place_images/');
             $image->move($destinationPath,$name);
             $image_uploaded = $name;

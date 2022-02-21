@@ -16,7 +16,7 @@ class CreatePlacesTable extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->string('place_name');
-            $table->integer('star');
+            $table->double('star');
             $table->string('description');
             $table->string('location');
             $table->string('temperature');

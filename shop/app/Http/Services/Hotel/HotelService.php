@@ -26,7 +26,7 @@ class HotelService
 
             if($request->hasFile('image')){
                 $image= $request->file('image');
-                $name = 'https://dulichvgo.herokuapp.com/uploads/hotel_images/'.time() . '.' . $image->getClientOriginalExtension();
+                $name = 'http://127.0.0.1:8000/uploads/hotel_images/'.time() . '.' . $image->getClientOriginalExtension();
                 $destinationPath = public_path('/uploads/hotel_images/');
                 $image->move($destinationPath,$name);
                 $image_uploaded = $name;
@@ -59,7 +59,7 @@ class HotelService
     {
         if($request->hasFile('image')){
             $image= $request->file('image');
-            $name = 'https://dulichvgo.herokuapp.com/uploads/hotel_images/'.time() . '.' . $image->getClientOriginalExtension();
+            $name = 'http://127.0.0.1:8000/uploads/hotel_images/'.time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/uploads/hotel_images/');
             $image->move($destinationPath,$name);
             $image_uploaded = $name;

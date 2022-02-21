@@ -35,7 +35,7 @@ class Helper
             <td>' . $place->id . '</td>
             <td>' . $place->place_name . '</td>
             <td>' . $place->description . '</td> ';
-            if($place->popular==0)
+            if($place->popular==1)
             {
                 $html .= '<td><a class="btn btn-success btn-sm" href="/admin/places/popular/' . $place->id .'"><i class="fas fa-check"> Active</i></a> </td>';
             }else{

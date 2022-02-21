@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Place;
@@ -84,6 +85,14 @@ class PostController extends Controller
             'popular' => $request->popular,
             'status' => $request->status,
         ]);
+        //update place star
+        $star = DB::table('posts')
+                ->where('place_id', $request->place_id)
+                ->avg('star');
+        $place = Place::find($request->place_id);
+        $place->update([
+            'star' => $star,
+        ]);
         if($request->hasFile('images')){
             $files = $request->file('images');
             foreach ($files as $file){
@@ -123,6 +132,13 @@ class PostController extends Controller
             'content' => $request->content,
             'star' => $request->star
         ]);
+        $star = DB::table('posts')
+                ->where('place_id', $request->place_id)
+                ->avg('star');
+        $place = Place::find($request->place_id);
+        $place->update([
+            'star' => $star,
+        ]);
 
         return response()->json(['status'=>'Cap nhat thanh cong!'], $this-> successStatus);
 
@@ -134,6 +150,14 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $post->delete();
+        
+        $star = DB::table('posts')
+                ->where('place_id', $request->place_id)
+                ->avg('star');
+        $place = Place::find($request->place_id);
+        $place->update([
+            'star' => $star,
+        ]);
 
         return response()->json(['status'=>'Da xoa bai viet!'], $this-> successStatus);
 

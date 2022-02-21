@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <label>Số sao</label>
-                <input type="number" name="star" class="form-control" placeholder="Nhập Số sao">
+                <input disabled type="number" name="star" class="form-control" placeholder="Nhập Số sao" value="0">
             </div>
             <div class="form-group">
                 <label>Ảnh</label>
