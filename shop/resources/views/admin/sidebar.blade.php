@@ -132,5 +132,8 @@
       </nav>
       <!-- /.sidebar-menu -->
     </div>
+    <div class="d-flex justify-content-center">
+      <a href="/logout" class="btn btn-primary">Đăng Xuất</a>
+    </div>
     <!-- /.sidebar -->
   </aside>

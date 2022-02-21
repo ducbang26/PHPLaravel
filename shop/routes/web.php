@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PlacesController;
 use App\Http\Controllers\Admin\UsersController;
 
 Route::get('admin/users/login', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/admin/users/login/store', [LoginController::class, 'store']);
 Route::middleware(['auth'])->group(function () {
 
